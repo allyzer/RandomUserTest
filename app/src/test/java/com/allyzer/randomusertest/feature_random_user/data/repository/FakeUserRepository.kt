@@ -26,6 +26,8 @@ class FakeUserRepository : UserRepository {
                 emit(Resource.Error(jsonObj.getString("error")))
             } catch (e: IOException) {
                 emit(Resource.Error("Could not connect to the server."))
+            }  catch (e: Exception) {
+                emit(Resource.Error("An unexpected error has occurred."))
             }
         }
     }

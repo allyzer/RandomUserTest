@@ -28,7 +28,7 @@ fun UserDto.toUser(): User {
 
     try {
         val registerDateTime =
-            ZonedDateTime.parse(dob.date, formatter).withZoneSameInstant(ZoneId.systemDefault())
+            ZonedDateTime.parse(registered.date, formatter).withZoneSameInstant(ZoneId.systemDefault())
         formattedRegisterDate = registerDateTime.format(dateFormatter)
     } catch (e: Exception) {
         formattedRegisterDate = registered.date
