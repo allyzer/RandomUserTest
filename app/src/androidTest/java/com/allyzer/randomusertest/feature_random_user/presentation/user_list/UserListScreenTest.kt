@@ -4,6 +4,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
 import androidx.navigation.compose.NavHost
@@ -67,6 +68,29 @@ class UserListScreenTest {
         composeRule.onNodeWithTag(TestTags.GENERATE_BUTTON).performClick()
 
         //check if loading is showing
+        composeRule.onNodeWithTag(TestTags.PROGRESS_INDICATOR).assertIsDisplayed()
+    }
+
+    @Test
+    fun clickButton_showErrorMessage() {
+        //click generate button
+        composeRule.onNodeWithTag(TestTags.GENERATE_BUTTON).performClick()
+
+        //check if error is showing
+        composeRule.onNodeWithText("The number field must not be empty.").assertIsDisplayed()
+    }
+
+    @Test
+    fun enterCharacter_isLoading() {
+        //Enter character in text field
+        composeRule
+            .onNodeWithTag(TestTags.NUMBER_TEXT_FIELD)
+            .performTextInput("A")
+
+        //click generate button
+        composeRule.onNodeWithTag(TestTags.GENERATE_BUTTON).performClick()
+
+        //check if loading is showing, should fail because of error
         composeRule.onNodeWithTag(TestTags.PROGRESS_INDICATOR).assertIsDisplayed()
     }
 }

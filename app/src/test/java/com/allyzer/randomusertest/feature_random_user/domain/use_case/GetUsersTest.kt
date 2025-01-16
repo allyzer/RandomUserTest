@@ -77,4 +77,12 @@ class GetUsersTest {
 
         assertThat(users.data).contains(testUser)
     }
+
+    @Test
+    fun `Get user list, contains more than 26`() = runBlocking {
+        val users: Resource<List<User>> = getUsersUseCase(1).drop(1).first()
+
+        //should fail because we only generated 26 users
+        assertThat(users.data?.size).isGreaterThan(26)
+    }
 }
