@@ -2,6 +2,7 @@ package com.allyzer.randomusertest.feature_random_user.presentation.user_list
 
 import androidx.activity.compose.setContent
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.assertIsNotDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
@@ -90,7 +91,7 @@ class UserListScreenTest {
         //click generate button
         composeRule.onNodeWithTag(TestTags.GENERATE_BUTTON).performClick()
 
-        //check if loading is showing, should fail because of error
-        composeRule.onNodeWithTag(TestTags.PROGRESS_INDICATOR).assertIsDisplayed()
+        //check if loading is not showing
+        composeRule.onNodeWithTag(TestTags.PROGRESS_INDICATOR).assertIsNotDisplayed()
     }
 }
