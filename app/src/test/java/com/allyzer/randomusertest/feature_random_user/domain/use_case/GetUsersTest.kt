@@ -91,7 +91,6 @@ class GetUsersTest {
             )
         }
 
-
         testUser = usersToAdd[10].toUser()
 
         runBlocking {
